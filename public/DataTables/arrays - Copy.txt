@@ -1,0 +1,29 @@
+{
+   "data": [
+      [
+         "1",
+         "Tiger Nixon",
+         "System Architect"
+      ],
+      [
+         "2",
+         "Garrett Winters",
+         "Accountant"
+      ],
+      [
+         "3",
+         "Ashton Cox",
+         "Junior Technical Author"
+      ],
+      [
+         "4",
+         "Cedric Kelly",
+         "Senior Javascript Developer"
+      ],
+      [
+         "5",
+         "Cedric Kelly",
+         "Senior Javascript Developer"
+      ]
+   ]
+}

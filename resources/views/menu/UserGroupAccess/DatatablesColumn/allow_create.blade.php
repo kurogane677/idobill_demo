@@ -1,0 +1,1 @@
+<x-customswitch id="allow_create{{$id}}" name="allow_create[{{$id}}]" opsi="{{ $allow_create == 'on' ? 'checked' : '' }}" center="centerly" />

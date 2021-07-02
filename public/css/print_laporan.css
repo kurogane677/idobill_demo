@@ -1,0 +1,26 @@
+#logo {
+    position: absolute;
+    top: 40px;
+    width: 250px;
+    max-width: 250px;
+}
+
+.button_place {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 120px;
+    right: 0;
+    width: 200px;
+    height: 40px;
+    background: #d6d6d6;
+    padding-left: 5px;
+}
+
+@media print {
+
+    #btnPrint,
+    #btnClose {
+        display: none;
+    }
+}

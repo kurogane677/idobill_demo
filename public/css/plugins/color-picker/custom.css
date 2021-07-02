@@ -1,0 +1,37 @@
+.btn-default {
+    width: 100%;
+    height: 30px;
+    /* background: #000 !important; */
+}
+
+.picker-wrapper {
+    transition: background-color 0.5s ease;
+}
+
+/* picker */
+.color-picker {
+    /* position: absolute;
+    bottom: 40px; */
+    background: rgba(255, 255, 255, 0.75);
+    padding: 10px;
+    border: 1px solid rgba(203, 203, 203, 0.6);
+    border-radius: 5px;
+}
+
+.color-picker>div {
+    width: 40px;
+    display: inline-block;
+    height: 40px;
+    margin: 5px;
+    border-radius: 100%;
+    opacity: 0.7;
+    box-shadow: 5px 10px 18px #b9b9b9;
+}
+
+.picker-wrapper {
+    padding: 0px;
+}
+
+.color-picker>div:hover {
+    opacity: 1;
+}

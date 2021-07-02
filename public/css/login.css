@@ -1,0 +1,76 @@
+@font-face {
+    font-family: PrimaryFont;
+    src: url("../fonts/Poppins-Regular.ttf");
+    font-display: fallback;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-image: url("../../images/city_sprite.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center 90%;
+    background-color: #E5E5F7;
+}
+
+.bg-skyblue {
+    background-color: #00b7ff;
+}
+
+.container {
+    /* height: 100vh; */
+    padding-top: 30px;
+}
+
+img {
+    width: 100%;
+    /* height: 200px; */
+    object-fit: contain;
+}
+
+.btn-login {
+    background: #00b7ff !important;
+    color: white !important;
+}
+
+.btn-login:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #00b7ff !important;
+}
+
+.links a {
+    background-color: #00b7ff;
+    border-radius: 3px;
+    color: white;
+    text-decoration: none;
+    padding: 0 5px 0 5px;
+}
+
+
+.bg-ijo {
+    background-color: #32B587;
+}
+
+
+/* input */
+.input-icon {
+    position: absolute;
+    padding: 7px 8px;
+    /* margin-left: 5px; */
+    border-radius: 5px 0 0 5px;
+}
+
+input {
+    padding-left: 40px !important;
+}
+
+/* .invalid-feedback {
+    position: relative !important;
+    bottom: 0;
+} */

@@ -1,0 +1,22 @@
+
+  /**
+   * 
+   *  Semua Datatable layout tablenya di custom disini 
+   *  
+   */
+
+#invoicetbl-table th:nth-child(1),  
+#invoicetbl-table th:nth-child(2),  
+#invoicetbl-table th:nth-child(3) {  
+  width: 15%;
+}
+
+#invoicetbl-table th:nth-child(4),
+#invoicetbl-table td:nth-child(4) {  
+  text-align: right;
+  width: 12%;
+}
+
+#invoicetbl-table {
+  table-layout: fixed;
+}

@@ -1,0 +1,8 @@
+[29-Apr-2021 08:49:58 Asia/Jakarta] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/grahako1/idobill.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/grahako1/idobill.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/grahako1/idobill.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/grahako1/idobill.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/grahako1/idobill.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/grahako1/idobill.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('view', Array)
+#5 /home/grahako1/idobill.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(136 in /home/grahako1/idobill.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
