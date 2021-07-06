@@ -1,5 +1,9 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- Subscription
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">Daftar {{$module->section}}</h5>
 @endsection
@@ -35,7 +39,7 @@
 
 @section('menu-body')
 <div class="col-12 pt-4 pb-2">
-  {!! $dataTable->table(['class' => 'table table-stripedx']) !!}
+  {!! $dataTable->table(['class' => 'table table-striped']) !!}
 </div>
 @endsection
 

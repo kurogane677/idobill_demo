@@ -949,6 +949,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
+  max-height: 250px;
   background: url("../img/testimonials-bg.jpg") no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1036,7 +1037,7 @@ section {
 
 @media (min-width: 992px) {
   .testimonials .testimonial-item p {
-    width: 80%;
+    width: 50%;
   }
 }
 

@@ -1,20 +1,21 @@
 <div class="row mt-4 d-flex justify-content-center">
   <div class="col-6">
 
-    <!-- Tanggal Pembayaran -->
+    <!-- Tanggal Kredit -->
     @if (Request::is('*/edit'))
-    <x-inputprepend title="Tanggal Pembayaran" type="date" id="paid_date" name="paid_date" value="{{$invoice_payments->paid_date}}" opsi="required" />
+    <x-inputprepend title="Tanggal Kredit" type="date" id="credit_date" name="credit_date" value="{{$credit_notes->credit_date}}" opsi="required" />
     @else
-    <x-inputprepend title="Tanggal Pembayaran" type="date" id="paid_date" name="paid_date" value="{{old('paid_date') ?? now()}}" opsi="required" />
+    <x-inputprepend title="Tanggal Kredit" type="date" id="credit_date" name="credit_date" value="{{old('credit_date') ?? now()}}" opsi="required" />
     @endif
 
     <!-- NO INVOICE -->
-    @if (Request::is('*/edit'))
-    <x-form-input title="Nomor Invoice" ipname="inv_no" value="{{$invoice->inv_no ?? ''}}" opsi="required readonly" />
-    @else
     <div class="row">
       <div class="col-9">
+        @if (Request::is('*/edit'))
+        <x-form-input title="Nomor Invoice" ipname="inv_no" value="{{$credit_notes->inv_no ?? ''}}" opsi="required readonly" />
+        @else
         <x-form-input title="Nomor Invoice" ipname="inv_no" value="" opsi="required readonly" />
+        @endif
       </div>
       <div class="col-3 text-right">
         <button id="delete_inv" type="button" class="btn btn-danger btn-sm">
@@ -25,12 +26,11 @@
         <x-buttonsearch target="#InvoiceModal" title="Cari" />
       </div>
     </div>
-    @endif
 
     <!-- Pelanggan -->
     @if (Request::is('*/edit'))
-    <input id="cust_id" name="cust_id" value="{{$invoice->cust_id}}" hidden>
-    <x-form-input title="Pelanggan" ipname="cust_name" value="{{$invoice->cust_id . ' - ' .$invoice->cust_name}}" opsi="required readonly" />
+    <input id="cust_id" name="cust_id" value="{{$credit_notes->cust_id}}" hidden>
+    <x-form-input title="Pelanggan" ipname="cust_name" value="{{$credit_notes->cust_id . ' - ' .$credit_notes->cust_name}}" opsi="required readonly" />
     @else
     <input id="cust_id" name="cust_id" value="" hidden>
     <x-form-input title="Pelanggan" ipname="cust_name" value="" opsi="required readonly" />
@@ -50,17 +50,19 @@
         <tr>
           <td id="inv_date" class="text-center">
             @if (Request::is('*/edit'))
-            {{\Carbon\Carbon::parse($invoice->inv_date)->format('d-m-Y')}}
+            {{\Carbon\Carbon::parse($credit_notes->inv_date)->format('d-m-Y')}}
             @endif
           </td>
           <td id="exp_date" class="text-center">
             @if (Request::is('*/edit'))
-            {{\Carbon\Carbon::parse($invoice->exp_date)->format('d-m-Y')}}
+            {{\Carbon\Carbon::parse($credit_notes->exp_date)->format('d-m-Y')}}
             @endif
           </td>
           <td id="subs_products">
             @if (Request::is('*/edit'))
-            {{\Carbon\Carbon::parse($invoice->exp_date)->format('d-m-Y')}}
+            @foreach ($credit_notes->subs_products as $item)
+            <li style="list-style: none;">{{$item}}</li>
+            @endforeach
             @endif
           </td>
         </tr>
@@ -70,21 +72,21 @@
     <!-- TOTAL HARUS DIBAYAR -->
     <div class="input-group input-group-sm mb-2">
       <input type="text" id="paid_total_text" class="form-control form-control-sm font-weight-bold RobotoFont text-right bg-dark text-white" value="TOTAL TAGIHAN " disabled readonly>
-      <input type="text" id="paid_total" name="paid_total" class="form-control form-control-sm font-weight-bold RobotoFont text-right" required readonly style="max-width: 150px;" @if (Request::is('*/edit')) value="{{number_format($invoice_payments->paid_total, '2', ',','.')}}" @else value="" @endif>
+      <input type="text" id="paid_total" name="paid_total" class="form-control form-control-sm font-weight-bold RobotoFont text-right" required readonly style="max-width: 150px;" @if (Request::is('*/edit')) value="{{number_format($credit_notes->grand_total, '2', ',','.')}}" @else value="" @endif>
     </div>
 
     <div class="mt-3"></div>
 
     <!-- JUMLAH KREDIT NOTE -->
     @if (Request::is('*/edit'))
-    <x-form-input title="Jumlah Kredit Note *" ipname="credit_amount" value="{{number_format($invoice_payments->credit_amount, '2', ',','.')}}" class="RobotoFont money" opsi="required" />
+    <x-form-input title="Jumlah Kredit Note *" ipname="credit_amount" value="{{number_format($credit_notes->credit_amount, '2', ',','.')}}" class="RobotoFont money" opsi="required" />
     @else
     <x-form-input title="Jumlah Kredit Note *" ipname="credit_amount" value="{{old('credit_amount') ?? '' }}" class="RobotoFont money" opsi="required" />
     @endif
 
     <!-- DIBAYAR OLEH -->
     @if (Request::is('*/edit'))
-    <x-form-input title="Dibayar Oleh" ipname="paid_by" value="{{$invoice_payments->paid_by}}" opsi="required" />
+    <x-form-input title="Dibayar Oleh" ipname="paid_by" value="{{$credit_notes->paid_by}}" opsi="required" />
     @else
     <x-form-input title="Dibayar Oleh" ipname="paid_by" value="{{old('paid_by') ?? ''}}" opsi="required" />
     @endif
@@ -95,7 +97,7 @@
         <span class="input-group-text field170px">Remark *</span>
       </div>
       @if (Request::is('*/edit'))
-      <textarea class="form-control" id="credit_remark" name="credit_remark" rows="3" required>{{ $user->credit_remark ?? old('credit_remark') }}</textarea>
+      <textarea class="form-control" id="credit_remark" name="credit_remark" rows="3" required>{{ $credit_notes->credit_remark ?? old('credit_remark') }}</textarea>
       @else
       <textarea class="form-control" id="credit_remark" name="credit_remark" rows="3" required>{{old('credit_remark')}}</textarea>
       @endif
@@ -105,7 +107,7 @@
     <footer class="blockquote-footer text-right">
       <small class="text-muted">
         terakhir diedit: <cite title="Source Title">
-          {{ Carbon\Carbon::parse($invoice_payments->updated_at)->format('d M Y H:i:s') }}
+          {{ Carbon\Carbon::parse($credit_notes->updated_at)->format('d M Y H:i:s') }}
           oleh
           {{$updated_by}}
         </cite>
@@ -141,14 +143,18 @@
   $(function() {
 
     $("#delete_inv").on('click', function(){
-      $("#inv_no").val('');
-      $("#cust_id").val('');
-      $("#cust_name").val('');
-      $("#paid_total").val('');
-      $("#paid_by").val('');
+      // clear table
       $("#inv_date").text('');
       $("#exp_date").text('');
       $("#subs_products").text('');
+      $("#paid_total").val('');
+
+      $("#inv_no").val('');
+      $("#cust_id").val('');
+      $("#cust_name").val('');      
+      $("#credit_amount").val('');
+      $("#paid_by").val('');
+      $("#credit_remark").val('');
     });
 
     var tblID = "#invoiceunpaid-table"

@@ -4,14 +4,14 @@
   <div class="sidebar" style="color:{{$profiles->sidebar_text}};" data-color="{{$profiles->sidebar_text}}">
     <ul class="navbar-nav" id="accordionSidebar">
 
-      @foreach ($profiles['menu'] as $menu)
-      @if ($profiles[$menu['menu_id']]["allow_show"] == "on")
-      <li class="nav-item mb-1" id="{{$menu['menu_tag']}}">
-        <a href="{{$menu['url']}}" class="nav-link px-3" style="color:{{$profiles->sidebar_text}};" data-color="{{$profiles->sidebar_text}}">
+      @foreach ($profiles['menu'] as $menux)
+      @if ($profiles[$menux['menu_id']]["allow_show"] == "on")
+      <li class="nav-item mb-1" id="{{$menux['menu_tag']}}">
+        <a href="{{$menux['url']}}" class="nav-link px-3" style="color:{{$profiles->sidebar_text}};" data-color="{{$profiles->sidebar_text}}">
           <svg class="bi" width="16" height="16" fill="currentColor">
-            <use href="{{asset("bootstrap-icons.svg#".$menu['menu_icon'])}}" />
+            <use href="{{asset("bootstrap-icons.svg#".$menux['menu_icon'])}}" />
           </svg>
-          <span class="text px-2" data-color="{{$profiles->sidebar_text}}" style="color:{{$profiles->sidebar_text}};">{{$menu['menu_name']}}</span>
+          <span class="text px-2" data-color="{{$profiles->sidebar_text}}" style="color:{{$profiles->sidebar_text}};">{{$menux['menu_name']}}</span>
         </a>
       </li>
       @endif

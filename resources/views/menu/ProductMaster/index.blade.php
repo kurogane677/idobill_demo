@@ -1,5 +1,9 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- Produk
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">Daftar {{$module->section}}</h5>
 @endsection

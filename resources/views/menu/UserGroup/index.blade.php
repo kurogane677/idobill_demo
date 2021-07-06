@@ -1,5 +1,9 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- User Group Management
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">User Group Manager</h5>
 @endsection

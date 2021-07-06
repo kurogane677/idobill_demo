@@ -30,7 +30,7 @@
 <form action="{{route('subscription.putusPermanen', $id)}}" method="POST" class="text-left">
   @csrf
   <a href="{{route('subscription.aktifkan', $id)}}" class="btn btn-sm btn-success p-0 px-2">
-    Aktif
+    Aktifkan
   </a>
   <button type="submit" onclick="return confirm('Anda yakin nomor langganan ini akan diputus permanen?')" class="btn btn-sm btn-danger p-0 px-2">
     P. Permanen

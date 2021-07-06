@@ -33,9 +33,15 @@
     <main id="main">
         {{-- Konten paling atas --}}
         @yield('content')
-
+        
         {{-- card content  --}}
-        @yield('card')
+        @include('welcome.card')
+
+        @include('welcome.tech')
+        
+        @include('welcome.opportunity')
+
+        @include('welcome.clients')
     </main>
 
     @include('welcome.footer')

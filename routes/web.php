@@ -25,6 +25,27 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('/staff', function () {
+  return view('pages.staff');
+});
+
+Route::get('/apart', function () {
+  return view('internet.apartemen');
+});
+Route::get('/bisnis', function () {
+  return view('internet.bisnis');
+});
+Route::get('/tv-cable', function () {
+  return view('internet.tv');
+});
+Route::get('/super-internet', function () {
+  return view('internet.super');
+});
+
+Route::get('/contact', function () {
+  return view('contact.contact');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['verified', 'nocache'])->group(function () {
@@ -56,6 +77,14 @@ Route::middleware(['verified', 'nocache'])->group(function () {
   Route::resource('settings', $dir . 'SettingsController');
   Route::resource('kredit', $dir . 'KreditController');
   Route::resource('debit', $dir . 'DebitController');
+
+  // Tools Route
+  Route::resource('stb', $dir . 'STBController');
+  Route::resource('router', $dir . 'RouterController');
+
+  // Alokasi dan Aktivasi Route
+  Route::resource('alokasi', $dir . 'AlokasiController');
+  Route::resource('aktivasi', $dir . 'AktivasiController');
 
   // User management routes
   Route::resource('user_management', $dir . 'UserManagementController');

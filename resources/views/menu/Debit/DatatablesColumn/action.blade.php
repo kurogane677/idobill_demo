@@ -6,9 +6,19 @@
     </button>
   </form>
 
-  <a href="{{route('debit.edit', $id)}}" class="btn btn-sm btn-success p-0 px-2 ml-1">
+  @if ($status == 0)
+  <a href="{{route('debit.edit', $id)}}" class="btn btn-sm btn-success p-0 px-2 mx-1">
     Edit
   </a>
+
+  <form action="{{route('debit.destroy', $id)}}" method="POST">
+    @csrf
+    @method("delete")
+    <button type="submit" onclick="return confirm('Anda Yakin Customer ini ingin dihapus?')" class="btn btn-sm btn-danger p-0 px-2">
+      Delete
+    </button>
+  </form>
+  @endif
 
 </div>
 

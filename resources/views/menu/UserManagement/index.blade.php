@@ -1,5 +1,9 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- Users
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">iDoBill Users</h5>
 @endsection

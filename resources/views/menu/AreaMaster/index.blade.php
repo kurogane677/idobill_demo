@@ -1,5 +1,9 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- Area
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">Daftar {{$module->section}}</h5>
 @endsection
@@ -56,11 +60,6 @@
   function format (d) {
     // `d` is the original data object for the row
       return `<table width="100%" class="table-child-detail"> 
-        <tr>
-            <td>Keterangan</td>
-            <td>:</td>
-            <td>${d.area_remark ?? ''}</td>            
-        </tr>
         <tr>
             <td>Created</td>
             <td>:</td>

@@ -1,5 +1,9 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- Kredit
+@endsection
+
 @section('top-area')
 <div class="row flex-center">
   <a href="{{route('kredit.index')}}" class="btn btn-sm btn-primary">Daftar Kredit</a>
@@ -43,7 +47,7 @@
 
 @section('menu-body')
 <div class="col-12 pt-4 pb-2">
-  <table id="kredit-table" class="table">
+  {{-- <table id="kredit-table" class="table">
     <thead>
       <tr>
         <th></th>
@@ -58,10 +62,11 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
-  </table>
-  {{-- {!! $dataTable->table(['class' => 'table table-stripedx']) !!} --}}
+  </table> --}}
+  {!! $dataTable->table(['class' => 'table table-stripedx']) !!}
 </div>
 @endsection
 
@@ -80,8 +85,25 @@
 
 <script>
   function format (d) {
+      
+      let products = d.subs_products;
+      let item = '';
+      products.forEach(el => {
+        item += `<li>${el}</li>`
+      });
+
     // `d` is the original data object for the row
       return `<table width="100%" class="table-child-detail">
+        <tr>
+            <td>Produk</td>
+            <td>:</td>
+            <td>${item}</td>
+        </tr>
+        <tr>
+            <td>Remark</td>
+            <td>:</td>
+            <td>${d.credit_remark ?? ''}</td>
+        </tr>
         <tr>
             <td>No. Subscription</td>
             <td>:</td>
@@ -98,7 +120,7 @@
             <td>${d.updated_at ? new Date(d.updated_at)+', By: '+d.updated_by : ''}</td>
         </tr>
       </table>`;
-    }
+  }
   
   $(function() {
     var tblID = "#kredit-table"
@@ -107,12 +129,14 @@
     $(tblID + " tbody").on("click", "td.details-control", function () {
       var tr = $(this).closest("tr");
       var row = table.row( tr );
+
       if ( row.child.isShown() ) {
         // This row is already open - close it
         row.child.hide();
         tr.removeClass("shown");
       }
       else {
+
           // Open this row
           row.child( format(row.data()) ).show();
           tr.addClass("shown");

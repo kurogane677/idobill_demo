@@ -148,6 +148,7 @@
 
             </div>
 
+            <!-- PRODUK -->
             <div class="my-3"></div>
             <div class="row no-gutters m-0 p-0 d-flex align-items-center">
               <div class="col-6">
@@ -202,6 +203,7 @@
 
             <br>
 
+            <!-- BIAYA -->
             <div class="row no-gutters m-0 p-0 d-flex align-items-center">
               <div class="col-6">
                 <small class="text-muted">Biaya Registrasi</small>
@@ -254,8 +256,51 @@
             </div>
 
             <br>
-            <div class="my-3"></div>
 
+            <!-- Table:Perangkat Instalasi -->
+            <div class="row">
+              <div class="col-7 d-flex align-items-end">
+                <small class="text-muted">Installasi Perangkat Untuk Konektivitas</small>
+              </div>
+              <div class="col-5 text-right">
+                <button id="alat-btn" type="button" class="btn btn-primary btn-sm w150px" data-toggle="modal" data-target="#ModalsPilihAlat">
+                  <svg class="bi" width="16" height="16" fill="currentColor">
+                    <use href="{{asset("bootstrap-icons.svg#hdd-fill")}}" />
+                  </svg> &nbsp; Pilih Perangkat
+                </button>
+              </div>
+            </div>
+            <hr class="w-100">
+            <div class="col-12 p-0">
+              <table id="{{ 'DataTableberlanggananPerangkat' }}" class="table table-sm table-bordered table-hover" style="width: 100%; font-size: 0.85rem;">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @if (!Request::is('*create*'))
+                  @foreach ($tools as $tool)
+                  <tr>
+                    <td>{{$tool->tools_id}}</td>
+                    <td>{!!$tool->details!!}</td>
+                    <td>
+                      <div class="text-center">
+                        <img id="del-icon" src='{{asset('images/delete.png')}}'>
+                      </div>
+                    </td>
+                  </tr>
+                  @endforeach
+                  @endif
+                </tbody>
+              </table>
+            </div>
+
+            <br>
+
+            <!-- TOTAL -->
             <div class="row no-gutters m-0 p-0 d-flex align-items-center">
               <div class="col-6">
                 <h5 class="text-primary">Total Keseluruhan</h5>
@@ -273,56 +318,6 @@
 
             <br>
 
-            <!-- Table:Alat -->
-            <div class="row">
-              <div class="col-2 d-flex align-items-end">
-                <small class="text-muted">Alat</small>
-              </div>
-              <div class="col-10 text-right">
-                <button id="delete_alat" type="button" class="btn btn-danger btn-sm">
-                  <svg class="bi" width="16" height="16" fill="currentColor">
-                    <use href="{{asset("bootstrap-icons.svg#eraser-fill")}}" />
-                  </svg>
-                </button>
-                <button id="alat-btn" type="button" class="btn btn-primary btn-sm w150px" data-toggle="modal" data-target="#ModalsAlat">
-                  <svg class="bi" width="16" height="16" fill="currentColor">
-                    <use href="{{asset("bootstrap-icons.svg#hdd-fill")}}" />
-                  </svg> &nbsp; Pilih Alat
-                </button>
-              </div>
-            </div>
-            <hr class="w-100">
-            <div class="col-12 p-0">
-              <table id="{{ 'DataTableberlanggananAlat' }}" class="table table-sm table-bordered table-hover" style="width: 100%; font-size: 0.85rem;">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Deskripsi</th>
-                    <th>S/N</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @if (!Request::is('*create*'))
-                  @foreach ($biaya_all as $biaya)
-                  <tr>
-                    <td>{{$biaya->biaya_id}}</td>
-                    <td>{{$biaya->biaya_name}}</td>
-                    <td>
-                      <input type="number" value="{{$biaya->biaya_price}}" name="biaya_price[]" class="biaya_price text-right w120px">
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <img id="del-icon" src='{{asset('images/delete.png')}}'>
-                      </div>
-                    </td>
-                  </tr>
-                  @endforeach
-                  @endif
-                </tbody>
-              </table>
-            </div>
-            <div class="my-2"></div>
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
@@ -390,41 +385,51 @@
 
 <!-- Modals:STB -->
 <x-modals-with-table id="ModalsSTB" title="Pilih Set Top Box" modalSize="modal-xl">
-  {!! $biayaTable->html()->table(['id' => 'subscriptionbiaya-table','class' => 'table table-striped']) !!}
+  {!! $stbTable->html()->table(['id' => 'subscriptionstb-table','class' => 'table table-striped']) !!}
 </x-modals-with-table>
 
+<!-- Modals:Router -->
+<x-modals-with-table id="ModalsRouter" title="Pilih Modem / Router" modalSize="modal-xl">
+  {!! $routerTable->html()->table(['id' => 'subscriptionrouter-table','class' => 'table table-striped']) !!}
+</x-modals-with-table>
+
+<!-- Modals:AlatLain -->
+{{-- <x-modals-with-table id="ModalsAlatLain" title="Pilih Alat/Perangkat Lain" modalSize="modal-xl">
+  {!! $biayaTable->html()->table(['id' => 'subscriptionbiaya-table','class' => 'table table-striped']) !!}
+</x-modals-with-table> --}}
+
 <!-- Modals:Alat -->
-<div class="modal fade" id="ModalsAlat" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="ModalsPilihAlat" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-md modal-dialog-centered" role="document">
     <div class="modal-content modal-content-alat p-4">
-      <h5 class="text-dark">Pilih Jenis Alat</h5>
+      <h5 class="text-dark">Pilih Perangkat</h5>
       <div class="line"></div>
       <div class="d-flex flex-center mt-3">
 
-        <button class="btn" type="button" data-toggle="modal" data-target="#ModalsSTB">
+        <button class="btn" type="button" data-toggle="modal" data-target="#ModalsSTB" onclick="$('#ModalsPilihAlat').modal('toggle')">
           <div class="slop">
             <img src="{{ asset('images/stb.png') }}" alt="">
           </div>
           Set Top Box
         </button>
 
-        <button class="btn" type="button" data-toggle="modal" data-target="#ModalsSTB">
+        <button class="btn" type="button" data-toggle="modal" data-target="#ModalsRouter" onclick="$('#ModalsPilihAlat').modal('toggle')">
           <div class="slop">
             <img src="{{ asset('images/router.png') }}" alt="">
           </div>
           Modem / Router
         </button>
 
-        <button class="btn" type="button" data-toggle="modal" data-target="#ModalsSTB">
+        {{-- <button class="btn" type="button" data-toggle="modal" data-target="#ModalsAlatLain" onclick="$('#ModalsPilihAlat').modal('toggle')">
           <div class="slop">
             <img src="{{ asset('images/alatlain.png') }}" alt="">
-          </div>
-          Alat Lainnya
-        </button>
-
       </div>
+      Alat Lainnya
+      </button> --}}
+
     </div>
   </div>
+</div>
 </div>
 
 @if (!Request::is('*/updown'))
@@ -434,6 +439,8 @@
 @endif
 {{ $biayaTable->html()->scripts() }}
 {{ $produkTable->html()->scripts() }}
+{{ $stbTable->html()->scripts() }}
+{{ $routerTable->html()->scripts() }}
 
 <script>
   $(function() {
@@ -456,22 +463,15 @@
         $("#area_id").val('');
       }
 
-      $("#cust_id").val(cust_id);
-      $("#cust_type").val(cust_type);
-      $("#cust_name").val(cust_name);
-      $("#email").val(email);
-      $("#area").val(area_name);
-
-      // area_id = area_name.split(" ")[0]
-      $("#area_id").val(area_id);
-
-      // $("#lo_group_id").val('');
-      // $("#lo_group_name").val('');
-      // $("#partner_group_id").val('');
-      // $("#partner_group_name").val('');
-
-      $("#ModalsPelanggan").modal('toggle');
-
+      if (cust_id != '') {
+        $("#cust_id").val(cust_id);
+        $("#cust_type").val(cust_type);
+        $("#cust_name").val(cust_name);
+        $("#email").val(email);
+        $("#area").val(area_name);
+        $("#area_id").val(area_id);
+        $("#ModalsPelanggan").modal('toggle');
+      }
     });
 
     $("#subscriptionlo-table").children('tbody').on('click', function(e){
@@ -484,10 +484,11 @@
         lo_group_id = '';
         lo_group_name = '';
       }
-
-      $("#lo_group_id").val(lo_group_id);
-      $("#lo_group_name").val(lo_group_name);
-      $("#ModalsLO").modal('toggle');
+      if (lo_group_id != '') {
+        $("#lo_group_id").val(lo_group_id);
+        $("#lo_group_name").val(lo_group_name);
+        $("#ModalsLO").modal('toggle');
+      }
     });
 
     $("#subscriptionpartner-table").children('tbody').on('click', function(e){
@@ -500,10 +501,11 @@
         partner_group_id = '';
         partner_group_id = '';
       }
-
-      $("#partner_group_id").val(partner_group_id);
-      $("#partner_group_name").val(partner_group_name);
-      $("#ModalsPartner").modal('toggle');
+      if (partner_group_id != '') {
+        $("#partner_group_id").val(partner_group_id);
+        $("#partner_group_name").val(partner_group_name);
+        $("#ModalsPartner").modal('toggle');
+      }
     });
     
     $("#lo-btn, #partner-btn").on('click', function(){
@@ -541,6 +543,7 @@
 <script src="{{ asset('js/views/berlangganan/biaya.js') }}"></script>
 <script src="{{ asset('js/views/berlangganan/produk.js') }}"></script>
 <script src="{{ asset('js/views/berlangganan/alat.js') }}"></script>
+<script src="{{ asset('js/views/berlangganan/perangkat.js') }}"></script>
 
 <script>
   function sum_() {

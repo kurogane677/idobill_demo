@@ -1,5 +1,9 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- Daftar Pembayaran
+@endsection
+
 @section('menu-header')
 @if ($profiles->type == "CUS")
 <h5 class="pt-2">Daftar Pembayaran</h5>

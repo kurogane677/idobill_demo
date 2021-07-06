@@ -1193,7 +1193,9 @@ button,
 #subscriptionlo-table,
 #subscriptionpartner-table,
 #subscriptionbiaya-table,
-#subscriptionproduk-table {
+#subscriptionproduk-table,
+#subscriptionstb-table,
+#subscriptionrouter-table {
     cursor: pointer;
 }
 
@@ -1472,7 +1474,7 @@ tr.shown td.details-control {
 
 table.dataTable tbody tr:hover {
     background-color: #444;
-    color: #fff;
+    color: #fff !important;
 }
 
 .table-child-detail:hover {
@@ -1481,7 +1483,7 @@ table.dataTable tbody tr:hover {
 }
 
 .table-child-detail tbody tr:hover {
-    background-color: #fff !important;
+    background-color: rgb(121, 121, 121) !important;
     color: #000 !important;
 }
 
@@ -1655,6 +1657,25 @@ table#selectinvoicetopay-table tbody tr:hover {
 
 .line {
     border-bottom: 3px solid rgb(0, 162, 190);
+}
+
+.centangPaid {
+    padding: 2px 5px 2px 5px;
+    color: #008026;
+    border: 1px solid #008026;
+    border-radius: 8px;
+}
+
+.no-bullet {
+    list-style: none;
+}
+
+.input-transparent {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #444;
+    /* border-radius: 5px; */
 }
 
 /*# sourceMappingURL=style.css.map */

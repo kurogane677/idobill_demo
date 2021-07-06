@@ -11,17 +11,21 @@ $(function() {
       info: false,
       order: [],
       columnDefs: [
-          {
-              searchable: false,
-              orderable: false,
-              targets: [0,3],
-              width: 10,
-          },
-          {
-              targets: [1,2],
-              className: "text-right",
-              width: 120,
-          },
+        {
+            searchable: false,
+            orderable: false,
+            targets: [0,3],
+            width: 10,
+        },
+        {
+            targets: [1],
+            width: 120,
+        },
+        {
+            targets: [2],
+            className: "text-right",
+            width: 120,
+        },
       ],
       initComplete: function() {
         sum_();
@@ -45,7 +49,7 @@ $(function() {
                 idBiaya +
                 " sudah ditambahkan!, \nSilahkan pilih Biaya lainnya"
         );
-    } else {
+    } else if (idBiaya != '') {
       tblBiaya.row.add({
         0: idBiaya,
         1: namaBiaya,

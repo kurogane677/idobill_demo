@@ -1,5 +1,9 @@
 @extends('menu.custom_layout_menu')
 
+@section('page-title')
+&nbsp;- Laporan
+@endsection
+
 @section('form')
 
 <form target="_blank" id="form_laporan" method="POST" enctype="multipart/form-data">

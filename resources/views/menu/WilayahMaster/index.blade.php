@@ -1,5 +1,9 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- Wilayah
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">Daftar {{$module->section}}</h5>
 @endsection
@@ -76,11 +80,6 @@
             <td>Area</td>
             <td>:</td>
             <td>${li}</td>            
-        </tr>
-        <tr>
-            <td>Keterangan</td>
-            <td>:</td>
-            <td>${d.wilayah_remark ?? ''}</td>            
         </tr>
         <tr>
             <td>Created</td>

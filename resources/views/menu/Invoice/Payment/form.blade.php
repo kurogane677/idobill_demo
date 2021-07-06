@@ -9,19 +9,19 @@
     @endif
 
     <!-- NO INVOICE -->
-    @if (Request::is('*payment*'))
-    <x-form-input title="Nomor Invoice" ipname="inv_no" value="{{$invoice->inv_no ?? ''}}" opsi="required readonly" />
-    @else
     <input name="old_inv_no" value="{{$invoice->inv_no ?? null}}" hidden>
     <div class="row">
-      <div class="col-12">
-        <x-form-input title="Nomor Invoice" ipname="inv_no" value="{{$invoice->inv_no}}" opsi="required readonly" />
+      <div class="col-10">
+        <x-form-input title="Nomor Invoice" ipname="inv_no" value="{{$invoice->inv_no ?? ''}}" opsi="required readonly" />
       </div>
-      {{-- <div class="col-2 text-right">
-        <x-buttonsearch target="#InvoiceModal" title="Cari" />
-      </div> --}}
+      <div class="col-2 text-right">
+        <a href="/print/invoice/{{$invoice->inv_no}}" class="btn btn-sm btn-warning printForm">
+          <svg class="bi" width="16" height="16" fill="currentColor">
+            <use href="{{asset("bootstrap-icons.svg#printer")}}" />
+          </svg> Print
+        </a>
+      </div>
     </div>
-    @endif
 
     <!-- Pelanggan -->
     @if (Request::is('*payment*'))
@@ -34,27 +34,28 @@
     @endif
 
     <div class="mb-3"></div>
+
     <!-- TABLE -->
-    <table class="table dataTable">
+    <table id="inv_detail" class="table dataTable">
       <thead>
         <tr class="text-center">
           <th>Tgl Invoice</th>
           <th>Jth Tempo</th>
-          <th>Action</th>
+          <th>Produk</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="text-center">
-          <td id="inv_date">
+        <tr>
+          <td id="inv_date" class="text-center">
             {{\Carbon\Carbon::parse($invoice->inv_date)->format('d-m-Y')}}
           </td>
-          <td id="exp_date">
+          <td id="exp_date" class="text-center">
             {{\Carbon\Carbon::parse($invoice->exp_date)->format('d-m-Y')}}
           </td>
-          <td>
-            <a href="/print/invoice/{{$invoice->inv_no}}" class="btn btn-sm btn-warning p-0 px-2 printForm">
-              Print
-            </a>
+          <td id="subs_products">
+            @foreach ($invoice->subs_products as $item)
+            <li style="list-style: none;">{{$item}}</li>
+            @endforeach
           </td>
         </tr>
       </tbody>
@@ -86,43 +87,77 @@
 
     <div class="mt-3"></div>
 
-    @if (Request::is('*edit*') && $invoice_payments->credit_id != null)
-    <!-- KREDIT NOTE -->
-    <x-form-input title="Kredit Note *" ipname="credit_amount" value="{{number_format($invoice_payments->credit_amount, '2', ',','.')}}" class="RobotoFont money" opsi="required" />
-
-    <!-- Keterangan Kredit Note -->
-    <div class="div_credit_amount_paid_remark">
-      <x-form-input title="Keterangan Kredit Note *" ipname="credit_remark" value="{{$credit_remark}}" opsi="required" />
+    <div class="row">
+      <div class="col-12 text-right">
+        <button id="delete_krdb" type="button" class="btn btn-danger btn-sm">
+          <svg class="bi" width="16" height="16" fill="currentColor">
+            <use href="{{asset("bootstrap-icons.svg#eraser-fill")}}" />
+          </svg>
+        </button>
+        <button id="tambah-krdb" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalsKrdb">
+          <svg class="bi" width="16" height="16" fill="currentColor">
+            <use href="{{asset("bootstrap-icons.svg#plus-circle-fill")}}" />
+          </svg>&nbsp;Kredit/Debit
+        </button>
+      </div>
     </div>
+    <hr class="w-100">
 
-    @else
-    <!-- KREDIT NOTE -->
-    <x-form-input title="Kredit Note *" ipname="credit_amount" value="{{old('credit_amount') ?? 0 }}" class="RobotoFont money" opsi="required" />
+    <div class="krdb mb-5">
+      @if ((Request::is('*edit*') && $invoice_payments->credit_id != null) || (Request::is('*payment*') && $credit_note != null))
 
-    <!-- Keterangan Kredit Note -->
-    <div class="div_credit_amount_paid_remark" hidden>
-      <x-form-input title="Keterangan Kredit Note *" ipname="credit_remark" value="{{old('credit_remark')}}" />
+      <!-- Tgl Kredit -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">Tanggal Kredit</span>
+        </div>
+        <input type="date" id="credit_date" name="credit_date" class="form-control form-control-sm RobotoFont" value="{{$credit_note->credit_date}}" readonly>
+      </div>
+
+      <!-- Kredit Amount -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">Kredit Note</span>
+        </div>
+        <input id="credit_amount" name="credit_amount" class="form-control form-control-sm RobotoFont money" value="{{number_format($invoice_payments->credit_amount ?? $credit_note->credit_amount, '2', ',','.')}}" required readonly>
+      </div>
+
+      <!-- Keterangan Tgl Kredit -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">Keterangan</span>
+        </div>
+        <textarea class="form-control" id="credit_remark" name="credit_remark" rows="3" required readonly>{{$credit_remark ?? $credit_note->credit_remark}}</textarea>
+      </div>
+
+      @elseif ((Request::is('*edit*') && $invoice_payments->debit_id != null) || (Request::is('*payment*') && $debit_note != null))
+
+      <!-- Tgl Debit -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">Tanggal Debit</span>
+        </div>
+        <input type="date" id="debit_date" name="debit_date" class="form-control form-control-sm RobotoFont" value="{{$debit_note->debit_date}}">
+      </div>
+
+      <!-- Debit Amount -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">Debit Note</span>
+        </div>
+        <input id="debit_amount" name="debit_amount" class="form-control form-control-sm RobotoFont money" value="{{number_format($invoice_payments->debit_amount ?? $debit_note->debit_amount, '2', ',','.')}}" required readonly>
+      </div>
+
+      <!-- Keterangan Debit Note -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">Keterangan</span>
+        </div>
+        <textarea class="form-control" id="debit_remark" name="debit_remark" rows="3" required readonly>{{$debit_remark ?? $debit_note->debit_remark}}</textarea>
+      </div>
+
+      @endif
     </div>
-    @endif
-
-    @if (Request::is('*edit*') && $invoice_payments->debit_id != null)
-    <!-- DEBIT NOTE -->
-    <x-form-input title="Debit Note *" ipname="debit_amount" value="{{number_format($invoice_payments->debit_amount, '2', ',','.')}}" class="RobotoFont money" opsi="required" />
-
-    <!-- Keterangan Debit Note -->
-    <div class="div_debit_amount_paid_remark">
-      <x-form-input title="Keterangan Debit Note *" ipname="debit_remark" value="{{$debit_remark}}" opsi="required" />
-    </div>
-
-    @else
-    <!-- DEBIT NOTE -->
-    <x-form-input title="Debit Note *" ipname="debit_amount" value="{{old('debit_amount') ?? 0 }}" class="RobotoFont money" opsi="required" />
-
-    <!-- Keterangan Debit Note -->
-    <div class="div_debit_amount_paid_remark" hidden>
-      <x-form-input title="Keterangan Debit Note *" ipname="debit_remark" value="{{old('debit_remark')}}" />
-    </div>
-    @endif
 
     <!-- TOTAL TERIMA -->
     @if (Request::is('*edit*'))
@@ -165,12 +200,6 @@
       </select>
     </div>
 
-    <!-- Generate Invoice Untuk Bulan Selanjutnya -->
-    {{-- <div class="custom-control custom-switch mt-3">
-      <input type="checkbox" class="custom-control-input" id="generate_next_inv" name="generate_next_inv" checked>
-      <label class="custom-control-label pt-1" for="generate_next_inv">Generate Invoice Untuk Bulan Selanjutnya</label>
-    </div> --}}
-
     @if (Request::is('*edit*') && $updated_by != '')
     <footer class="blockquote-footer text-right">
       <small class="text-muted">
@@ -186,10 +215,50 @@
   </div>
 </div>
 
-<!-- Modals:InvoiceModal -->
-<x-modals-with-table id="InvoiceModal" title="Pilih Invoice" modalSize="modal-xl" modalPosition="">
-  {{ $dataTable->table(['class' => 'table table-striped']) }}
-</x-modals-with-table>
+<!-- Modals:KreditDebit -->
+<div class="modal fade" id="ModalsKrdb" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-md modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body mt-0 pt-0">
+        <div class="d-flex justify-content-between align-items-center mt-4 mr-3">
+          <h6>Add Credit / Debit</h6>
+          <span class="area-title badge badge-info p-2"></span>
+        </div>
+        <hr class="w-100">
+
+        <!-- tipe -->
+        <div class="input-group input-group-sm mb-2">
+          <div class="input-group-prepend field170px">
+            <span class="input-group-text field170px">Tipe</span>
+          </div>
+          <select class="form-control form-control-sm" id="mdls_tipe" name="mdls_tipe">
+            <option value="kredit">Kredit</option>
+            <option value="debit">Debit</option>
+          </select>
+        </div>
+
+        <!-- paid_date -->
+        <x-inputprepend title="Tanggal" type="date" id="mdls_date" name="mdls_date" value="{{old('mdls_date') ?? now()}}" />
+
+        <!-- credit_amount -->
+        <x-form-input title="Jumlah Kredit Note *" ipname="mdls_amount" value="{{old('mdls_amount') ?? '' }}" class="RobotoFont money" />
+
+        <!-- credit_remark -->
+        <div class="input-group input-group-sm mb-2">
+          <div class="input-group-prepend field170px">
+            <span class="input-group-text field170px">Keterangan *</span>
+          </div>
+          <textarea class="form-control" id="mdls_remark" name="mdls_remark" rows="3">{{old('mdls_remark')}}</textarea>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        <button id="simpanKrdb" type="button" class="btn btn-success btn-sm">Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{ $dataTable->scripts() }}
 
@@ -290,6 +359,13 @@
                   .replace(/\D/g, "");
       return parseFloat(debit_amount);
     }
+    
+    function mdls_amount(){
+    var mdls_amount = $("#mdls_amount").val()
+                  .replace(',00', "")
+                  .replace(/\D/g, "");
+      return parseFloat(mdls_amount);
+    }
 
     $("#collect_fee, #late_fee").on("input", function() {
       let to_paid_total = sub_total() + collect_fee() + late_fee();
@@ -303,12 +379,12 @@
         $("#received_total").val(number_format(received_total,2,',','.'))
     });
 
-    $("#collect_fee, #late_fee, #credit_amount, #debit_amount").on("focusin", function() {
+    $("#collect_fee, #late_fee, #credit_amount, #debit_amount, #mdls_amount").on("focusin", function() {
       $(this).select();
       $(this).data('val', $(this).val());
     });
     
-    $("#collect_fee, #late_fee, #credit_amount, #debit_amount").on("focusout", function() {
+    $("#collect_fee, #late_fee, #credit_amount, #debit_amount, #mdls_amount").on("focusout", function() {
       let prev = $(this).data('val');
         if ($(this).val() == "") {
           $(this).val(0);
@@ -320,11 +396,7 @@
           }
         }
     });
-
-    $("#sub_total").on('update', function(){
-        console.log("jajajaj");
-    });
-    
+   
     $("#credit_amount").on("change", function() {
       if ($(this).val() != 0)
       {
@@ -355,6 +427,98 @@
       }
     });
 
+    $("#delete_krdb").on('click', function(){
+      $(".krdb").html('');
+      $("#received_total").val($("#paid_total").val());
+    });
+
+    $("#simpanKrdb").on('click', function(){
+
+      if ($("#mdls_amount").val() == '0')
+      {
+        alert('Jumlah kredit tidak boleh Rp.0');
+        return false;
+      }
+
+      if ($("#mdls_remark").val() == '')
+      {
+        alert('Keterangan tidak boleh kosong!');
+        return false;
+      }
+
+      let mdls_date = $("#mdls_date").val();
+      let mdls_amount = $("#mdls_amount").val();
+      let mdls_remark = $("#mdls_remark").val();
+
+      let title_date = '';
+      let title_amount = '';
+      let id_date = '';
+      let id_amount = '';
+      let id_remark = '';
+
+      if ($("#mdls_tipe").val()=='kredit')
+      {
+        title_date = 'Tanggal Kredit'
+        title_amount = 'Kredit Note'
+        id_date = 'credit_date';
+        id_amount = 'credit_amount';
+        id_remark = 'credit_remark';
+      } else {
+        title_date = 'Tanggal Debit'
+        title_amount = 'Debit Note'
+        id_date = 'debit_date';
+        id_amount = 'debit_amount';
+        id_remark = 'debit_remark';
+      }
+
+      $(".krdb").html('');
+      $(".krdb").html(
+        `
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">${title_date}</span>
+        </div>
+        <input type="date" id="${id_date}" name="${id_date}" class="form-control form-control-sm RobotoFont" value="${mdls_date}" readonly>
+      </div>
+      
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">${title_amount}</span>
+        </div>
+        <input id="${id_amount}" name="${id_amount}" class="form-control form-control-sm RobotoFont money" value="${mdls_amount}" required readonly>
+      </div>
+
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend field170px">
+          <span class="input-group-text field170px">Keterangan</span>
+        </div>
+        <textarea class="form-control" id="${id_remark}" name="${id_remark}" rows="3" required readonly>${mdls_remark}</textarea>
+      </div>`
+      )
+
+      $("#krdb_date").val($("#mdls_paid_date").val());
+
+      if ($("#mdls_tipe").val()=='kredit')
+      {
+        let received_total = paid_total() - credit_amount();
+        $("#received_total").val(number_format(received_total,2,',','.'))
+      } else {
+        let received_total = paid_total() + debit_amount();
+        $("#received_total").val(number_format(received_total,2,',','.'))
+      }
+      
+      $("#ModalsKrdb").modal("toggle");
+    });
+
+    // Load pertama kali
+    if ( $("#credit_amount").val() ) {
+      let received_total = paid_total() - credit_amount();
+        $("#received_total").val(number_format(received_total,2,',','.'))
+    }else if ( $("#debit_amount").val() ) {
+      let received_total = paid_total() + debit_amount();
+        $("#received_total").val(number_format(received_total,2,',','.'))
+    }
+  
     var tblID = "#selectinvoicetopay-table"
     var table = $("#selectinvoicetopay-table").DataTable();
     

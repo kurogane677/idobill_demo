@@ -19,7 +19,11 @@ $(function() {
               width: 10,
           },
           {
-              targets: [1,2],
+              targets: [1],
+              width: 120,
+          },
+          {
+              targets: [2],
               className: "text-right",
               width: 120,
           },
@@ -53,7 +57,7 @@ $(function() {
             idProduk +
                 " sudah ditambahkan!, \nSilahkan pilih produk lainnya"
         );
-    } else {
+    } else if (idProduk != '') {
       // tblProduk.row(0).remove().draw(false)
       tblProduk.row.add({
         0: idProduk,
