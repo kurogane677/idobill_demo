@@ -4,6 +4,56 @@
 &nbsp;- Tagihan
 @endsection
 
+@section('top-area')
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6">
+    </div>
+    <div class="col-6 text-right">
+      <div>
+        @if ($user_type != 'CUS')
+        <button type="button" id="generateKwitansi" data-toggle="modal" data-target="#generateKwitansiModals" class="btn btn-sm btn-warning mr-2">
+          Generate Kwitansi
+        </button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Pembayaran Sekaligus
+          </button>
+          <div id="dropdown-pembayaran-sekaligus" class="dropdown-menu p-2 shadow">
+            <a href="{{route('invoice.payment_all', 'lo')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
+              <svg class="bi" width="16" height="16" fill="currentColor">
+                <use href="{{asset("bootstrap-icons.svg#shop")}}" />
+              </svg>&nbsp; Berdasarkan LO
+            </a>
+            <a href="{{route('invoice.payment_all', 'partner')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
+              <svg class="bi" width="16" height="16" fill="currentColor">
+                <use href="{{asset("bootstrap-icons.svg#exclude")}}" />
+              </svg>&nbsp; Berdasarkan Partner
+            </a>
+            <a href="{{route('invoice.payment_all', 'area')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
+              <svg class="bi" width="16" height="16" fill="currentColor">
+                <use href="{{asset("bootstrap-icons.svg#geo-alt")}}" />
+              </svg>&nbsp; Berdasarkan Area
+            </a>
+            <a href="{{route('invoice.payment_all', 'date')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
+              <svg class="bi" width="16" height="16" fill="currentColor">
+                <use href="{{asset("bootstrap-icons.svg#calendar-date")}}" />
+              </svg>&nbsp; Berdasarkan Tanggal
+            </a>
+            <a href="{{route('invoice.payment_all', 'month')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
+              <svg class="bi" width="16" height="16" fill="currentColor">
+                <use href="{{asset("bootstrap-icons.svg#calendar-month")}}" />
+              </svg>&nbsp; Berdasarkan Bulan
+            </a>
+          </div>
+        </div>
+        @endif
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+
 @section('menu-header')
 @if ($profiles->type == "CUS")
 <h5 class="pt-2">Daftar Tagihan</h5>
@@ -69,45 +119,7 @@
   <span>
     Catatan : TOTAL belum termasuk biaya collect dan biaya terlambat
   </span>
-  <div>
-    @if ($user_type != 'CUS')
-    <button type="button" id="generateKwitansi" data-toggle="modal" data-target="#generateKwitansiModals" class="btn btn-sm btn-warning mr-2">
-      Generate Kwitansi
-    </button>
-    <div class="btn-group dropup">
-      <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Pembayaran Sekaligus
-      </button>
-      <div id="dropdown-pembayaran-sekaligus" class="dropdown-menu p-2 shadow">
-        <a href="{{route('invoice.payment_all', 'lo')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
-          <svg class="bi" width="16" height="16" fill="currentColor">
-            <use href="{{asset("bootstrap-icons.svg#shop")}}" />
-          </svg>&nbsp; Berdasarkan LO
-        </a>
-        <a href="{{route('invoice.payment_all', 'partner')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
-          <svg class="bi" width="16" height="16" fill="currentColor">
-            <use href="{{asset("bootstrap-icons.svg#exclude")}}" />
-          </svg>&nbsp; Berdasarkan Partner
-        </a>
-        <a href="{{route('invoice.payment_all', 'area')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
-          <svg class="bi" width="16" height="16" fill="currentColor">
-            <use href="{{asset("bootstrap-icons.svg#geo-alt")}}" />
-          </svg>&nbsp; Berdasarkan Area
-        </a>
-        <a href="{{route('invoice.payment_all', 'date')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
-          <svg class="bi" width="16" height="16" fill="currentColor">
-            <use href="{{asset("bootstrap-icons.svg#calendar-date")}}" />
-          </svg>&nbsp; Berdasarkan Tanggal
-        </a>
-        <a href="{{route('invoice.payment_all', 'month')}}" class="btn btn-sm btn-outline-success text-left w180px mb-1">
-          <svg class="bi" width="16" height="16" fill="currentColor">
-            <use href="{{asset("bootstrap-icons.svg#calendar-month")}}" />
-          </svg>&nbsp; Berdasarkan Bulan
-        </a>
-      </div>
-    </div>
-    @endif
-  </div>
+
 </div>
 @endsection
 

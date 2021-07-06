@@ -35,12 +35,12 @@
 
             <!-- LO -->
             <div class="row mt-3">
-              <div class="col-2 d-flex align-items-end">
-                <small class="text-muted">LO</small>
+              <div class="col-4 d-flex align-items-end">
+                <small class="text-muted">LO Marketing</small>
               </div>
               @if (!Request::is('*/updown'))
               @if ($user_type != "LO")
-              <div class="col-10 text-right">
+              <div class="col-8 text-right">
                 <button id="delete_lo" type="button" class="btn btn-danger btn-sm">
                   <svg class="bi" width="16" height="16" fill="currentColor">
                     <use href="{{asset("bootstrap-icons.svg#eraser-fill")}}" />
@@ -263,7 +263,7 @@
                 <small class="text-muted">Installasi Perangkat Untuk Konektivitas</small>
               </div>
               <div class="col-5 text-right">
-                <button id="alat-btn" type="button" class="btn btn-primary btn-sm w150px" data-toggle="modal" data-target="#ModalsPilihAlat">
+                <button id="alat-btn" type="button" class="btn btn-primary btn-sm w150px" data-toggle="modal" data-target="#ModalsPerangkat">
                   <svg class="bi" width="16" height="16" fill="currentColor">
                     <use href="{{asset("bootstrap-icons.svg#hdd-fill")}}" />
                   </svg> &nbsp; Pilih Perangkat
@@ -272,7 +272,7 @@
             </div>
             <hr class="w-100">
             <div class="col-12 p-0">
-              <table id="{{ 'DataTableberlanggananPerangkat' }}" class="table table-sm table-bordered table-hover" style="width: 100%; font-size: 0.85rem;">
+              <table id="{{ 'DataTableberlanggananPerangkat' }}" class="table table-sm table-bordered table-hover table-striped" style="width: 100%; font-size: 0.85rem;">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -383,54 +383,10 @@
   {!! $biayaTable->html()->table(['id' => 'subscriptionbiaya-table','class' => 'table table-striped']) !!}
 </x-modals-with-table>
 
-<!-- Modals:STB -->
-<x-modals-with-table id="ModalsSTB" title="Pilih Set Top Box" modalSize="modal-xl">
-  {!! $stbTable->html()->table(['id' => 'subscriptionstb-table','class' => 'table table-striped']) !!}
+<!-- Modals:Perangkat -->
+<x-modals-with-table id="ModalsPerangkat" title="Pilih Perangkat" modalSize="modal-xl">
+  {!! $deviceTable->html()->table(['id' => 'device-table','class' => 'table table-striped']) !!}
 </x-modals-with-table>
-
-<!-- Modals:Router -->
-<x-modals-with-table id="ModalsRouter" title="Pilih Modem / Router" modalSize="modal-xl">
-  {!! $routerTable->html()->table(['id' => 'subscriptionrouter-table','class' => 'table table-striped']) !!}
-</x-modals-with-table>
-
-<!-- Modals:AlatLain -->
-{{-- <x-modals-with-table id="ModalsAlatLain" title="Pilih Alat/Perangkat Lain" modalSize="modal-xl">
-  {!! $biayaTable->html()->table(['id' => 'subscriptionbiaya-table','class' => 'table table-striped']) !!}
-</x-modals-with-table> --}}
-
-<!-- Modals:Alat -->
-<div class="modal fade" id="ModalsPilihAlat" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-    <div class="modal-content modal-content-alat p-4">
-      <h5 class="text-dark">Pilih Perangkat</h5>
-      <div class="line"></div>
-      <div class="d-flex flex-center mt-3">
-
-        <button class="btn" type="button" data-toggle="modal" data-target="#ModalsSTB" onclick="$('#ModalsPilihAlat').modal('toggle')">
-          <div class="slop">
-            <img src="{{ asset('images/stb.png') }}" alt="">
-          </div>
-          Set Top Box
-        </button>
-
-        <button class="btn" type="button" data-toggle="modal" data-target="#ModalsRouter" onclick="$('#ModalsPilihAlat').modal('toggle')">
-          <div class="slop">
-            <img src="{{ asset('images/router.png') }}" alt="">
-          </div>
-          Modem / Router
-        </button>
-
-        {{-- <button class="btn" type="button" data-toggle="modal" data-target="#ModalsAlatLain" onclick="$('#ModalsPilihAlat').modal('toggle')">
-          <div class="slop">
-            <img src="{{ asset('images/alatlain.png') }}" alt="">
-      </div>
-      Alat Lainnya
-      </button> --}}
-
-    </div>
-  </div>
-</div>
-</div>
 
 @if (!Request::is('*/updown'))
 {{ $cusTable->html()->scripts() }}
@@ -439,8 +395,7 @@
 @endif
 {{ $biayaTable->html()->scripts() }}
 {{ $produkTable->html()->scripts() }}
-{{ $stbTable->html()->scripts() }}
-{{ $routerTable->html()->scripts() }}
+{{ $deviceTable->html()->scripts() }}
 
 <script>
   $(function() {
@@ -542,7 +497,6 @@
 
 <script src="{{ asset('js/views/berlangganan/biaya.js') }}"></script>
 <script src="{{ asset('js/views/berlangganan/produk.js') }}"></script>
-<script src="{{ asset('js/views/berlangganan/alat.js') }}"></script>
 <script src="{{ asset('js/views/berlangganan/perangkat.js') }}"></script>
 
 <script>

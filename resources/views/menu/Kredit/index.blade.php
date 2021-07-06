@@ -5,10 +5,18 @@
 @endsection
 
 @section('top-area')
-<div class="row flex-center">
-  <a href="{{route('kredit.index')}}" class="btn btn-sm btn-primary">Daftar Kredit</a>
-  <div class="mx-2"></div>
-  <a href="{{route('debit.index')}}" class="btn btn-sm btn-outline-primary">Daftar Debit</a>
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6">
+      <a href="{{route('kredit.index')}}" class="btn btn-sm btn-primary">Daftar Kredit</a>
+      <a href="{{route('debit.index')}}" class="btn btn-sm btn-outline-primary">Daftar Debit</a>
+    </div>
+    <div class="col-6 text-right">
+      <a href="{{route("kredit.create")}}" class="btn btn-sm btn-success text-white ml-3">
+        + Tambah {{$module->section}} Baru
+      </a>
+    </div>
+  </div>
 </div>
 @endsection
 
@@ -73,9 +81,7 @@
 @section('menu-footer')
 <div class="card-footer flex-between">
   <span> </span>
-  <a href="{{route("kredit.create")}}" class="btn btn-sm btn-success text-white ml-3">
-    + Tambah {{$module->section}} Baru
-  </a>
+
 </div>
 @endsection
 

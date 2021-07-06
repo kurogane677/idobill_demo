@@ -1,5 +1,22 @@
 @extends('menu.base_layout_menu')
 
+@section('page-title')
+&nbsp;- LO User Management
+@endsection
+
+@section('top-area')
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6">
+    </div>
+    <div class="col-6 text-right">
+      <a href="{{route('lo.index')}}" class="btn btn-sm btn-primary text-white">Daftar LO Group</a>
+      <a href="{{route('lo_user.create', $group_id)}}" class="btn btn-sm btn-success text-white ml-2">+ Tambah User Baru</a>
+    </div>
+  </div>
+</div>
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">LO User Management</h5>
 @endsection
@@ -44,8 +61,7 @@
 
 @section('menu-footer')
 <div class="card-footer d-flex justify-content-end align-items-center">
-  <a href="{{route('lo.index')}}" class="btn btn-sm btn-primary text-white">Daftar LO Group</a>
-  <a href="{{route('lo_user.create', $group_id)}}" class="btn btn-sm btn-success text-white ml-2">+ Tambah User Baru</a>
+
 </div>
 @endsection
 

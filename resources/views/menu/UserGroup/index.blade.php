@@ -4,10 +4,17 @@
 &nbsp;- User Group Management
 @endsection
 
+@section('top-area')
+<div class="col-10 text-right">
+  <a href="{{route($module->route.".create")}}" class="btn btn-sm btn-success text-white ml-3">
+    + Tambah Group Baru
+  </a>
+</div>
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">User Group Manager</h5>
 @endsection
-
 
 @section('filter-button')
 {{-- <x-showfilterboxbtn /> --}}
@@ -55,9 +62,7 @@
 
 @section('menu-footer')
 <div class="card-footer d-flex justify-content-end align-items-center">
-  <a href="{{route($module->route.".create")}}" class="btn btn-sm btn-success text-white ml-3">
-    + Tambah Group Baru
-  </a>
+
 </div>
 @endsection
 

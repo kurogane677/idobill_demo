@@ -28,7 +28,7 @@
         <li><a class="nav-link scrollto active" href="{{url('/')}}">Home</a></li>
         <li class="dropdown"><a class="nav-link scrollto" href="#">About Us<i class="bi bi-chevron-down"></i></a>
           <ul>
-            <li><a class="nav-link scrollto" href="#">Our Clients</a></li>
+            <li><a class="nav-link scrollto" href="#">Partnership</a></li>
             <li><a class="nav-link scrollto" href="{{url('/staff')}}">Our Team</a></li>
           </ul>
         </li>
@@ -44,16 +44,16 @@
             <li><a style="text-decoration: none;" href="{{url('/tv-cable')}}">TV Cable</a></li>
           </ul>
         </li>
-        <li><a class="nav-link scrollto " href="#">News</a></li>
+        <li><a class="nav-link scrollto " href="#">Gallery</a></li>
         <li class="dropdown"><a class="nav-link" href="#">Support  <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="#" class="nav-link scrollto" style="text-decoration: none;">Speedtest</a></li>
             <li><a href="{{url('/contact')}}" class="nav-link scrollto" style="text-decoration: none;">Contact</a></li>
           </ul>
         </li>
-          <li>
+          {{-- <li>
         <a class="nav-link scrollto btn btn-primary" style="color: #fff;" href="{{url('/dashboard')}}">Login</a>
-          </li>
+          </li> --}}
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->

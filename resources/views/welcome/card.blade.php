@@ -7,7 +7,7 @@
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="bi bi-inboxes-fill" style="font-size: 2rem;"></i></div>
-              <h4 class="title">Great Advices</a></h4>
+              <h4 class="title">Saran</a></h4>
               <p class="description">Solusi terbaik untuk kebutuhan Internet, TV dan Telepon</p>
             </div>
           </div>
@@ -23,7 +23,7 @@
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title">Optimal Choice</h4>
+              <h4 class="title">Pilihan Optimal</h4>
               <p class="description">Teknologi up to date demi kenyamanan dalam digital surfing</p>
             </div>
           </div>

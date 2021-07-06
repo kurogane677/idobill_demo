@@ -9,7 +9,7 @@
                 <li>
                   <i class="bx bi bi-headset"></i>
                   <div>
-                    <h5>Responsive</h5>
+                    <h5>Responsif</h5>
                     <p>Respon cepat tindakan cepat jika terjadi masalah</p>
                   </div>
                 </li>
@@ -23,7 +23,7 @@
                 <li>
                   <i class="bx bi bi-wifi"></i>
                   <div>
-                    <h5>Free Add On</h5>
+                    <h5>Add On gratis</h5>
                     <p>Tambahan WiFi gratis</p>
                   </div>
                 </li>
@@ -34,21 +34,21 @@
                 <li>
                   <i class="bx bi-play-circle"></i>
                   <div>
-                    <h5>Expressions</h5>
+                    <h5>Media</h5>
                     <p>Bebas streaming & unlimited Quota</p>
                   </div>
                 </li>
                 <li>
                   <i class="bx bi bi-speedometer"></i>
                   <div>
-                    <h5>High Efficiency</h5>
+                    <h5>Efisiensi tinggi</h5>
                     <p>Durable, bebas brebet , lemot dan mati mendadak</p>
                   </div>
                 </li>
                 <li>
                   <i class="bi bi-cash-coin"></i>
                   <div>
-                    <h5>Quite Cost-Effective</h5>
+                    <h5>Hemat Biaya</h5>
                     <p>Ekonomis dan upgradable</p>
                   </div>
                 </li>
@@ -56,7 +56,7 @@
         </div>
         <form method="GET" action="#">
             @csrf
-            <button class="btn btn-primary" alt="Show Me" value="Show Me" style="align-content: center;">Show Me <span class="bi bi-arrow-right" style="2rem;"></span></button>
+            <button class="btn btn-primary" alt="Show Me" value="Show Me" style="align-content: center;">Selengkapnya <span class="bi bi-arrow-right" style="2rem;"></span></button>
         </form>
         {{-- <a href="#" class="btn btn-success" style="text-decoration: none; width: 10em;">Show Me <span class="bi bi-arrow-right"></span></a> --}}
         </div>

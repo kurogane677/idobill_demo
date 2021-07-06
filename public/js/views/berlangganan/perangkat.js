@@ -15,100 +15,48 @@ $(function() {
       columnDefs: [
           {
             targets: [0,2],
-            width: 10,
+            width: 1,
           },
       ],
   });
 
-  // Pilih STB
-  $("#subscriptionstb-table").children('tbody').on('click', function(e){
-    var td = $(e.target).closest('tr').children('td');
-    var stb_id   = td.eq(0).text();
-    var stb_desc = td.eq(1).text();
-    var stb_sn   = td.eq(2).text();
-    var stb_chip = td.eq(3).text();
-    var stb_status = td.eq(4).text();
+  // Pilih Perangkat
+  $("#device-table").children('tbody').on('click', function(e){
+    let td = $(e.target).closest('tr').children('td');
+    let dev_id       = td.eq(0).text();
+    let dev_category = td.eq(1).text();
+    let dev_desc     = td.eq(2).text();
+    let dev_details  = td.eq(3).html();
 
     // Ini untuk nanti kalau aktivasi sudah bisa
-    // if (stb_status == 'Inactive')
+    // if (dev_status == 'Inactive')
     // {
-    //   alert('Router ini masih belum diaktivasi!');
+    //   alert('Perangkat ini masih belum diaktivasi!');
     //   return false;
     // }
 
-    var PerangkatSudahTerpilih = tblPerangkat.column(0)
+    let PerangkatSudahTerpilih = tblPerangkat.column(0)
       .data()
       .toArray();
 
-    if (PerangkatSudahTerpilih.includes(stb_id)) {
+    if (PerangkatSudahTerpilih.includes(dev_id)) {
         alert(
-            "Router dengan ID: " +
-            stb_id +
-                " sudah ditambahkan!, \nSilahkan pilih router lainnya"
+            "Perangkat dengan ID: " +
+            dev_id +
+                " sudah ditambahkan!, \nSilahkan pilih perangkat lainnya"
         );
-    } else if (stb_id != '') {
-
-      let details = `
-      <li class="no-bullet">Deskripsi STB: ${stb_desc}</li>
-      <li class="no-bullet">S/N: ${stb_sn}</li>
-      <li class="no-bullet">Chip ID: ${stb_chip}</li>
-      `
-      // tblPerangkat.row(0).remove().draw(false)
+    } else if (dev_id != '' || dev_id != 'No data available in table') {
       tblPerangkat.row.add({
-        0: stb_id,
-        1: details,
+        0: dev_id,
+        1: dev_desc+dev_details,
         2: '<div class="text-center"><img id="del-icon" src='+ deleteIcon +'></div>',
       }).draw();
-      $("#ModalsSTB").modal("toggle");
+      $("#ModalsPerangkat").modal("toggle");
     }
   });
 
-  // Pilih ROUTER
-  $("#subscriptionrouter-table").children('tbody').on('click', function(e){
-    var td = $(e.target).closest('tr').children('td');
-    var router_id     = td.eq(0).text();
-    var router_desc   = td.eq(1).text();
-    var router_sn     = td.eq(2).text();
-    var router_mac    = td.eq(3).text();
-    var router_ip     = td.eq(4).text();
-    var router_status = td.eq(5).text();
-
-    // Ini untuk nanti kalau aktivasi sudah bisa
-    // if (router_status == 'Inactive')
-    // {
-    //   alert('Router ini masih belum diaktivasi!');
-    //   return false;
-    // }
-
-    var PerangkatSudahTerpilih = tblPerangkat.column(0)
-      .data()
-      .toArray();
-
-    if (PerangkatSudahTerpilih.includes(router_id)) {
-        alert(
-            "Router dengan ID: " +
-            router_id +
-                " sudah ditambahkan!, \nSilahkan pilih router lainnya"
-        );
-    } else if (router_id != '') {
-
-      let details = `
-      <li class="no-bullet">Deskripsi Router: ${router_desc}</li>
-      <li class="no-bullet">S/N: ${router_sn}</li>
-      <li class="no-bullet">MAC Address: ${router_mac}</li>
-      <li class="no-bullet">IP Address: ${router_ip}</li>
-      `
-      // tblPerangkat.row(0).remove().draw(false)
-      tblPerangkat.row.add({
-        0: router_id,
-        1: details,
-        2: '<div class="text-center"><img id="del-icon" src='+ deleteIcon +'></div>',
-      }).draw();
-      $("#ModalsRouter").modal("toggle");
-    }
-  });
-
-  dTblPerangkat.children('tbody').on( 'click', '#del-icon', function () {
+  dTblPerangkat.children('tbody').on( 'click', '#del-icon', 
+  function () {
     tblPerangkat
         .row( $(this).parents('tr') )
         .remove()

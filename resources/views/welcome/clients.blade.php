@@ -40,10 +40,10 @@
       <div class="row">
     
         <div class="section-title">
-            <h2>Our Clients</h2>
+            <h2>Partnership</h2>
         </div>
         <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+          <img src="{{asset('assets/img/clients/logo_pln.png')}}" class="img-fluid" alt="">
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">

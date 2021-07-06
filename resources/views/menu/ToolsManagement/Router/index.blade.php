@@ -5,12 +5,18 @@
 @endsection
 
 @section('top-area')
-<div class="row flex-center">
-  <a href="{{route('stb.index')}}" class="btn btn-sm btn-outline-primary">Daftar STB</a>
-  <div class="mx-2"></div>
-  <a href="{{route('router.index')}}" class="btn btn-sm btn-primary">Daftar Router</a>
-  {{-- <div class="mx-2"></div>
-  <a href="{{route('tools.index')}}" class="btn btn-sm btn-outline-primary">Daftar Alat Lain</a> --}}
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6">
+      <a href="{{route('stb.index')}}" class="btn btn-sm btn-outline-primary">Daftar STB</a>
+      <a href="{{route('router.index')}}" class="btn btn-sm btn-primary">Daftar Router</a>
+    </div>
+    <div class="col-6 text-right">
+      <a href="{{route($module->route.'.create')}}" class="btn btn-sm btn-success text-white">
+        + Tambah {{$module->section}} Baru
+      </a>
+    </div>
+  </div>
 </div>
 @endsection
 
@@ -59,9 +65,7 @@
 
 @section('menu-footer')
 <div class="card-footer d-flex justify-content-end align-items-center">
-  <a href="{{route($module->route.'.create')}}" class="btn btn-sm btn-success text-white">
-    + Tambah {{$module->section}} Baru
-  </a>
+
 </div>
 @endsection
 

@@ -3,16 +3,16 @@
 
     <!-- Nama Produk -->
     @if (Request::is('*/edit'))
-    <x-form-input title="Nama {{$module->section}} *" ipname="router_desc" value="{{$router->router_desc}}" opsi="required autofocus" />
+    <x-form-input title="Nama {{$module->section}} *" ipname="dev_desc" value="{{$router->dev_desc}}" opsi="required autofocus" />
     @else
-    <x-form-input title="Nama {{$module->section}} *" ipname="router_desc" value="{{old('router_desc')}}" opsi="required autofocus" />
+    <x-form-input title="Nama {{$module->section}} *" ipname="dev_desc" value="{{old('dev_desc')}}" opsi="required autofocus" />
     @endif
 
     <!-- Serial Number -->
     @if (Request::is('*/edit'))
-    <x-form-input title="Serial Number *" ipname="router_serial_no" value="{{$router->router_serial_no}}" opsi="required autofocus" />
+    <x-form-input title="Serial Number *" ipname="dev_sn" value="{{$router->dev_sn}}" opsi="required autofocus" />
     @else
-    <x-form-input title="Serial Number *" ipname="router_serial_no" value="{{old('router_serial_no')}}" opsi="required autofocus" />
+    <x-form-input title="Serial Number *" ipname="dev_sn" value="{{old('dev_sn')}}" opsi="required autofocus" />
     @endif
 
     <!-- MAC Address -->
@@ -31,9 +31,9 @@
 
     <!-- Remark -->
     @if (Request::is('*/edit'))
-    <x-alamat-input title="Remark" ipname="router_remark" value="{{$router->router_remark}}" />
+    <x-alamat-input title="Remark" ipname="dev_remark" value="{{$router->dev_remark}}" />
     @else
-    <x-alamat-input title="Remark" ipname="router_remark" value="{{old('router_remark')}}" />
+    <x-alamat-input title="Remark" ipname="dev_remark" value="{{old('dev_remark')}}" />
     @endif
 
     @if (Request::is('*edit*') && $updated_by != '')

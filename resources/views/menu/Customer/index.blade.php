@@ -4,6 +4,20 @@
 &nbsp;- Daftar {{$module->section}}
 @endsection
 
+@section('top-area')
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6">
+    </div>
+    <div class="col-6 text-right">
+      <a href="{{route(strtolower($module->name).".create")}}" class="btn btn-sm btn-success text-white">
+        + Tambah Pelanggan Baru
+      </a>
+    </div>
+  </div>
+</div>
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">Daftar {{$module->section}}</h5>
 @endsection
@@ -47,9 +61,7 @@
 <div class="card-footer d-flex justify-content-between align-items-center">
   <span> </span>
   {{-- <a href="/" class="btn btn-sm btn-info text-white">Import Dari Excel</a> --}}
-  <a href="{{route(strtolower($module->name).".create")}}" class="btn btn-sm btn-success text-white ml-3">
-    + Tambah Pelanggan Baru
-  </a>
+
 </div>
 @endsection
 

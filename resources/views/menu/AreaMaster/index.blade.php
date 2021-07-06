@@ -4,6 +4,19 @@
 &nbsp;- Area
 @endsection
 
+@section('top-area')
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6"></div>
+    <div class="col-6 text-right">
+      <a href="{{route(strtolower($module->section).".create")}}" class="btn btn-sm btn-success text-white">
+        + Tambah {{$module->section}} Baru
+      </a>
+    </div>
+  </div>
+</div>
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">Daftar {{$module->section}}</h5>
 @endsection
@@ -48,9 +61,6 @@
   <span>
     *Link => Area yang terhubung dengan pelanggan, LO, atau partner. Hanya 0 link yang dapat dihapus!
   </span>
-  <a href="{{route(strtolower($module->section).".create")}}" class="btn btn-sm btn-success text-white">
-    + Tambah {{$module->section}} Baru
-  </a>
 </div>
 @endsection
 

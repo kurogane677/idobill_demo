@@ -6,15 +6,15 @@
         <div class="container" data-aos="fade-up">
   
           <div class="section-title">
-            <h2>Contact</h2>
-            <h3><span>Contact Us</span></h3>
+            <h2>Kontak</h2>
+            <h3><span>Kontak Kami</span></h3>
             </div>
   
           <div class="row" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-6">
               <div class="info-box mb-4">
                 <i class="bx bx-map"></i>
-                <h3>Our Address</h3>
+                <h3>Alamat kami</h3>
                 <p>Jl. Imam Bonjol-Nagoya, Kampung Utama, Lubuk Baja, Batam, Riau, 29444</p>
               </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="col-lg-3 col-md-6">
               <div class="info-box  mb-4">
                 <i class="bx bx-envelope"></i>
-                <h3>Email Us</h3>
+                <h3>Email kami</h3>
                 <p>cs@idobill.com</p>
               </div>
             </div>
@@ -30,7 +30,7 @@
             <div class="col-lg-3 col-md-6">
               <div class="info-box  mb-4">
                 <i class="bx bx-phone-call"></i>
-                <h3>Call Us</h3>
+                <h3>Telpon kami</h3>
                 <p>+62 81914000665</p>
               </div>
             </div>

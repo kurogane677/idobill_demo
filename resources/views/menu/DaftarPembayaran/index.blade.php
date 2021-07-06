@@ -4,6 +4,20 @@
 &nbsp;- Daftar Pembayaran
 @endsection
 
+@section('top-area')
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6">
+    </div>
+    <div class="col-6 text-right">
+      <a href="{{route("invoice.index")}}" class="btn btn-sm btn-primary">
+        Daftar Tagihan
+      </a>
+    </div>
+  </div>
+</div>
+@endsection
+
 @section('menu-header')
 @if ($profiles->type == "CUS")
 <h5 class="pt-2">Daftar Pembayaran</h5>
@@ -49,9 +63,7 @@
 
 @section('menu-footer')
 <div class="card-footer d-flex justify-content-end align-items-center">
-  <a href="{{route("invoice.index")}}" class="btn btn-sm btn-primary">
-    Daftar Tagihan
-  </a>
+
 </div>
 @endsection
 

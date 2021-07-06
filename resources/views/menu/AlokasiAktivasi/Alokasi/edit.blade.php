@@ -18,7 +18,7 @@ value="{{$id}}"
 @endsection
 
 @section('form')
-@include($module->form)
+@include('menu.'.$module->folder.'.form')
 @endsection
 
 @section('footer')

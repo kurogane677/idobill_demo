@@ -5,12 +5,18 @@
 @endsection
 
 @section('top-area')
-<div class="row flex-center">
-  <a href="{{route('stb.index')}}" class="btn btn-sm btn-primary">Daftar STB</a>
-  <div class="mx-2"></div>
-  <a href="{{route('router.index')}}" class="btn btn-sm btn-outline-primary">Daftar Router</a>
-  {{-- <div class="mx-2"></div>
-  <a href="{{route('tools.index')}}" class="btn btn-sm btn-outline-primary">Daftar Alat Lain</a> --}}
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6">
+      <a href="{{route('stb.index')}}" class="btn btn-sm btn-primary">Daftar STB</a>
+      <a href="{{route('router.index')}}" class="btn btn-sm btn-outline-primary">Daftar Router</a>
+    </div>
+    <div class="col-6 text-right">
+      <a href="{{route($module->route.'.create')}}" class="btn btn-sm btn-success text-white">
+        + Tambah {{$module->section}} Baru
+      </a>
+    </div>
+  </div>
 </div>
 @endsection
 
@@ -59,14 +65,13 @@
 
 @section('menu-footer')
 <div class="card-footer d-flex justify-content-end align-items-center">
-  <a href="{{route($module->route.'.create')}}" class="btn btn-sm btn-success text-white">
-    + Tambah {{$module->section}} Baru
-  </a>
+
 </div>
 @endsection
 
 @section('scripts')
 {!! $dataTable->scripts() !!}
+
 <script>
   function format (d) {
     // `d` is the original data object for the row
@@ -94,8 +99,8 @@
     var table = $("#toolsstb-table").DataTable();
     
     $(tblID + " tbody").on("click", "td.details-control", function () {
-      var tr = $(this).closest("tr");
-      var row = table.row( tr );
+      let tr = $(this).closest("tr");
+      let row = table.row( tr );
       if ( row.child.isShown() ) {
         // This row is already open - close it
         row.child.hide();
@@ -107,6 +112,7 @@
           tr.addClass("shown");
       }
     });
+
   });
 </script>
 @endsection

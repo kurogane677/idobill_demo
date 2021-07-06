@@ -4,8 +4,8 @@
 <!-- ======= Banner Section ======= -->
 <section id="hero" class="d-flex align-items-center">
   <div class="container" data-aos="zoom-out" data-aos-delay="100">
-    <div class="d-flex">
-      <a href="#" class="btn-get-started scrollto">Get Started</a>
+    <div class="d-flex justify-content-center">
+      <a href="#" class="btn-get-started scrollto">Pesan sekarang</a>
       <a href="{{ asset('video/transvision-grahakomindo.mp4') }}" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       {{-- <video autoplay muted loop id="myVideo">
         <source src="{{ asset('video/transvision-grahakomindo.mp4') }}" type="video/mp4">
@@ -33,7 +33,7 @@
 
       <div class="section-title">
         <h2>F.A.Q</h2>
-        <h3>Frequently Asked <span>Questions</span></h3>
+        <h3><span>Pertanyaan</span> yang Sering Diajukan</h3>
         <p>Pertanyaan yang mungkin akan Anda atau banyak orang tanyakan</p>
       </div>
 

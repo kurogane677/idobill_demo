@@ -4,10 +4,32 @@
 &nbsp;- Users
 @endsection
 
+@section('top-area')
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6"></div>
+    <div class="col-6 text-right">
+
+      <a href="{{url('password/reset')}}" class="btn btn-sm btn-danger">Reset User Password</a>
+
+      @if ($user_type == "LO")
+      <a href="{{route('lo_user.create', $GroupID)}}" class="btn btn-sm btn-success text-white ml-1">
+        + Tambah User Baru
+      </a>
+      @else
+      <button class="btn btn-sm btn-success ml-1" data-toggle="modal" data-target="#userBaruModal">
+        + Tambah User Baru
+      </button>
+      @endif
+
+    </div>
+  </div>
+</div>
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">iDoBill Users</h5>
 @endsection
-
 
 @section('filter-button')
 {{-- <x-showfilterboxbtn /> --}}
@@ -56,14 +78,6 @@
 
 @section('menu-footer')
 <div class="card-footer d-flex justify-content-end align-items-center">
-  <a href="{{url('password/reset')}}" class="btn btn-sm btn-danger">Reset User Password</a>
-
-
-  @if ($user_type == "LO")
-  <a href="{{route('lo_user.create', $GroupID)}}" class="btn btn-sm btn-success text-white ml-2">+ Tambah User Baru</a>
-  @else
-  <button class="btn btn-sm btn-success ml-3" data-toggle="modal" data-target="#userBaruModal">+ Tambah User Baru</button>
-  @endif
 
 </div>
 @endsection

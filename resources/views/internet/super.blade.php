@@ -54,7 +54,7 @@
 <section id="apart" class="about">
     <div class="container d-flex align-items-center justify-content-between" data-aos="fade-right">
             <div class="p-2 bd-highlight" data-aos="fade-right" data-aos-delay="100"><h4><i class="bi bi-lightbulb" style="font-size: 4em;"></i>- - - - - <i class="bi bi-arrow-right"></i></h4><br/><br/>
-                <h4>Great Advices</h4>
+                <h4>Saran</h4>
                 <p>Solusi terbaik untuk kebutuhan Internet, TV dan Telepon</p>
             </div>
             <div class="p-2 bd-highlight"  data-aos="fade-right" data-aos-delay="200"><h4><i class="bi bi-headset" style="font-size: 4em;"></i>- - - - - <i class="bi bi-arrow-right"></i></h4><br/><br/>
@@ -63,10 +63,10 @@
             </div>
             <div class="p-2 bd-highlight" data-aos="fade-right" data-aos-delay="300"><h4><i class="bi bi-bar-chart-line-fill" style="font-size: 4em;"></i>- - - - - <i class="bi bi-arrow-right"></i></h4><br/><br/>
                 <h4>BOD</h4>
-                <p>Ready to deliver Bandwidth On Demand</p>
+                <p>siap untuk mengirim Bandwidth sesuai permintaan</p>
             </div>
             <div class="p-2 bd-highlight" data-aos="fade-right" data-aos-delay="400"><h4><i class="bi bi-speedometer2" style="font-size: 4em;"></i></h4><br/><br/>
-                <h4>Optimal Choice</h4>
+                <h4>Pilihan optimal</h4>
                 <p>Teknologi up to date demi kenyamanan dalam digital surfing</p>
             </div>
     </div>

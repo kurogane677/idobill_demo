@@ -3,16 +3,16 @@
 
     <!-- Nama Produk -->
     @if (Request::is('*/edit'))
-    <x-form-input title="Nama {{$module->section}} *" ipname="stb_desc" value="{{$stb->stb_desc}}" opsi="required autofocus" />
+    <x-form-input title="Nama {{$module->section}} *" ipname="dev_desc" value="{{$stb->dev_desc}}" opsi="required autofocus" />
     @else
-    <x-form-input title="Nama {{$module->section}} *" ipname="stb_desc" value="{{old('stb_desc')}}" opsi="required autofocus" />
+    <x-form-input title="Nama {{$module->section}} *" ipname="dev_desc" value="{{old('dev_desc')}}" opsi="required autofocus" />
     @endif
 
     <!-- Serial Number -->
     @if (Request::is('*/edit'))
-    <x-form-input title="Serial Number *" ipname="stb_serial_no" value="{{$stb->stb_serial_no}}" opsi="required autofocus" />
+    <x-form-input title="Serial Number *" ipname="dev_sn" value="{{$stb->dev_sn}}" opsi="required autofocus" />
     @else
-    <x-form-input title="Serial Number *" ipname="stb_serial_no" value="{{old('stb_serial_no')}}" opsi="required autofocus" />
+    <x-form-input title="Serial Number *" ipname="dev_sn" value="{{old('dev_sn')}}" opsi="required autofocus" />
     @endif
 
     <!-- Chip ID -->
@@ -24,9 +24,9 @@
 
     <!-- Remark -->
     @if (Request::is('*/edit'))
-    <x-alamat-input title="Remark" ipname="stb_remark" value="{{$stb->stb_remark}}" />
+    <x-alamat-input title="Remark" ipname="dev_remark" value="{{$stb->dev_remark}}" />
     @else
-    <x-alamat-input title="Remark" ipname="stb_remark" value="{{old('stb_remark')}}" />
+    <x-alamat-input title="Remark" ipname="dev_remark" value="{{old('dev_remark')}}" />
     @endif
 
     @if (Request::is('*edit*') && $updated_by != '')

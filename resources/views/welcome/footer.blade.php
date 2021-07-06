@@ -24,7 +24,7 @@
         <div class="row">
           
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Office Batam<span></span></h3>
+            <h3>Kantor Batam<span></span></h3>
             <p>
               Jl. Imam Bonjol-Nagoya, Kampung Utama, Lubuk Baja, Batam, Riau, 29444<br/><br/>
               <strong>Telepon:</strong> 077 8431 889<br>
@@ -32,7 +32,7 @@
           </div>
           
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Products</h4>
+            <h4>Produk</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="{{url('/apart')}}">Internet Apartemen</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{{url('/bisnis')}}">Internet Bisnis</a></li>
@@ -41,7 +41,7 @@
           </div>
           
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Site Link</h4>
+            <h4>Link situs</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="{{url('/')}}">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Promotions</a></li>
@@ -50,7 +50,7 @@
           </div>
           
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Social Networks</h4>
+            <h4>Social Media kami</h4>
             <p>Mari mengenal kami lebih dekat dengan mengikuti sosial media kami</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>

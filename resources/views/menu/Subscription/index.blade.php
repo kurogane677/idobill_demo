@@ -4,6 +4,20 @@
 &nbsp;- Subscription
 @endsection
 
+@section('top-area')
+<div class="row">
+  <div class="col-12 flex-between">
+    <div class="col-6">
+    </div>
+    <div class="col-6 text-right">
+      <a href="{{route('subscription.create')}}" class="btn btn-sm btn-success">
+        + Tambah Langganan Baru
+      </a>
+    </div>
+  </div>
+</div>
+@endsection
+
 @section('menu-header')
 <h5 class="pt-2">Daftar {{$module->section}}</h5>
 @endsection
@@ -46,9 +60,7 @@
 @section('menu-footer')
 <div class="card-footer d-flex justify-content-between align-items-center">
   <span>Untuk upgrade/downgrade langganan pastikan semua invoice untuk nomor langganan tersebut telah dibayar.</span>
-  <a href="{{route('subscription.create')}}" class="btn btn-sm btn-success">
-    + Tambah Langganan Baru
-  </a>
+
 </div>
 @endsection
 

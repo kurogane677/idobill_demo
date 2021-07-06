@@ -7,8 +7,8 @@
         
         <div class="section-title">
             <h2>Team</h2>
-            <h3>Our Hardworking <span>Team</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+            <h3>Personel <span>Team</span></h3>
+            <p>Team kami yang bekerja untuk Anda dan melayani dengan baik.</p>
         </div>
         
         <div class="row">

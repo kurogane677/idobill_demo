@@ -1195,7 +1195,8 @@ button,
 #subscriptionbiaya-table,
 #subscriptionproduk-table,
 #subscriptionstb-table,
-#subscriptionrouter-table {
+#subscriptionrouter-table,
+#device-table {
     cursor: pointer;
 }
 
@@ -1546,7 +1547,7 @@ table#selectinvoicetopay-table tbody tr:hover {
 }
 
 #dropdown-pembayaran-sekaligus {
-    transform: translate3d(-12px, -200px, 0px) !important;
+    transform: translate3d(-10px, 35px, 0) !important;
 }
 
 .p_baru_legend,
@@ -1676,6 +1677,10 @@ table#selectinvoicetopay-table tbody tr:hover {
     border: none;
     border-bottom: 2px solid #444;
     /* border-radius: 5px; */
+}
+
+.modal-xxl {
+    width: 100vw !important;
 }
 
 /*# sourceMappingURL=style.css.map */
