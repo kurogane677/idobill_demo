@@ -26,23 +26,26 @@ Route::get('/', function () {
 });
 
 Route::get('/staff', function () {
-  return view('pages.staff');
+  return view('welcome.pages.staff');
+});
+Route::get('/gallery', function () {
+  return view('welcome.pages.gallery');
 });
 
 Route::get('/apart', function () {
-  return view('internet.apartemen');
+  return view('welcome.internet.apartemen');
 });
 Route::get('/bisnis', function () {
-  return view('internet.bisnis');
+  return view('welcome.internet.bisnis');
 });
 Route::get('/tv-cable', function () {
-  return view('internet.tv');
+  return view('welcome.internet.tv');
 });
 Route::get('/super-internet', function () {
-  return view('internet.super');
+  return view('welcome.internet.super');
 });
 
 Route::get('/contact', function () {
-  return view('contact.contact');
+  return view('welcome.pages.contact');
 });
 

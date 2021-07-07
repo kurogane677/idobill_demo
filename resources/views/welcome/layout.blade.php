@@ -27,24 +27,16 @@
 <body>
 
     <!-- Navbar import -->
-    @include('welcome.navbar')
+    @include('welcome.partials.navbar')
 
     <!-- Content Top -->
     <main id="main">
         {{-- Konten paling atas --}}
         @yield('content')
         
-        {{-- card content  --}}
-        @include('welcome.card')
-
-        @include('welcome.tech')
-        
-        @include('welcome.opportunity')
-
-        @include('welcome.clients')
     </main>
 
-    @include('welcome.footer')
+    @include('welcome.partials.footer')
 
     {{-- Javascript nya --}}
 

@@ -1,1 +1,0 @@
-<x-customswitch id="allow_edit{{$id}}" name="allow_edit[{{$id}}]" opsi="{{ $allow_edit == 'on' ? 'checked' : '' }}" center="centerly" />

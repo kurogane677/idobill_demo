@@ -1,1 +1,0 @@
-<x-customswitch id="allow_export{{$id}}" name="allow_export[{{$id}}]" opsi="{{ $allow_export == 'on' ? 'checked' : '' }}" center="centerly" />

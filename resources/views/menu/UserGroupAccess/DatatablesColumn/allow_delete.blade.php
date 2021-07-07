@@ -1,1 +1,0 @@
-<x-customswitch id="allow_delete{{$id}}" name="allow_delete[{{$id}}]" opsi="{{ $allow_delete == 'on' ? 'checked' : '' }}" center="centerly" />
